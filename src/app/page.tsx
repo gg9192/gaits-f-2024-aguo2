@@ -1,5 +1,16 @@
 import styles from "./page.module.css";
+import type { InferGetServerSidePropsType, GetServerSideProps } from 'next'
 import FlashcardSetList from "./components/FlashcardSetList";
+import pg from 'pg'
+const { Client } = pg
+
+ 
+
+export const getServerSideProps = (async () => {
+  const client = new Client()
+  await client.connect()
+  client.
+}) satisfies GetServerSideProps<{ }>
 
 export default function Home() {
   return (

@@ -1,8 +1,9 @@
-export default function FlashcardSetList() {
-    const a = [1,1,1,1,1,1,1,]
+import { flashcardSets } from "@/types/flashcardset"
+
+export default function FlashcardSetList(props: flashcardSets ) {
     return (<div className="flashcardBox">
-        {a.map((el,i) => {return (
-            <div className="flashcardSet" key={i}>aaa</div>
+        {props.map((el) => {return (
+            <div className="flashcardSet" key={el.id}>{el.name}</div>
         )})}
     </div>)
 

@@ -2,7 +2,13 @@ const pg = require('pg');
 require('dotenv').config();
 const { Client } = pg;
 
+function dateToTimeStamp(d) {
+    // 2004-10-19 10:23:54
+    return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()} ${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`
+}
+
 async function migrateDB() {
+    console.log('amdjw')
     let client = new Client({
         user: process.env.DB_USER,
         password: process.env.DB_PASSWORD,
@@ -39,7 +45,7 @@ async function migrateDB() {
             -- Create the FlashcardSets table
             CREATE TABLE FlashcardSets (
                 PK SERIAL PRIMARY KEY,          -- Primary Key
-                CreatedAt DATE NOT NULL DEFAULT CURRENT_DATE, -- Default to current date if not provided
+                CreatedAt TIMESTAMP NOT NULL,
                 SetName VARCHAR(255) NOT NULL   -- Name of the flashcard set
             );
 
@@ -76,13 +82,40 @@ async function seedFakeSets() {
         port: process.env.DB_PORT,
         database: 'GAITS-project' // Connect to the new database
     });
+    await client.connect()
     try {
-
+        const subjects = [
+            "Mathematics",
+            "Physics",
+            "Chemistry",
+            "Biology",
+            "Computer Science",
+            "History",
+            "Geography",
+            "Literature",
+            "Philosophy",
+            "Economics"
+          ];
+        const d = new Date();
+        for (const subject of subjects) {
+            console.log(`seeding ${subject}, ${dateToTimeStamp(d)}`)
+            const sql = `INSERT INTO FlashcardSets (CreatedAt, SetName) VALUES ('${dateToTimeStamp(d)}', '${subject}');`
+            await client.query(sql);
+            d.setHours(d.getHours() + 1);
+        }
+        console.log('Tables seeded successfully.');
     }
-    catch {
-
+    catch (err) {
+        console.error('Error during seed:', err);
     }
-    finally {}
+    finally {
+        await client.end();
+    }
 }
 
-migrateDB();
+async function setUpDB() {
+    await migrateDB();
+    await seedFakeSets()
+}
+
+setUpDB()
