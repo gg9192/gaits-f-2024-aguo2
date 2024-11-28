@@ -1,4 +1,4 @@
-import styles from "./page.module.css";
+import styles from "./styles/page.module.css";
 import FlashcardSetList from "./components/FlashcardSetList";
 
 export default function Home() {
@@ -7,7 +7,7 @@ export default function Home() {
         <h1>Select a Flashcard Set</h1>
         <FlashcardSetList></FlashcardSetList>
         <h1>OR:</h1>
-        <a href='/create'>Create a New Set</a>
+        <a href='/create  '>Create a New Set</a>
     </div>
   );
 }
