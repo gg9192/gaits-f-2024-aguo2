@@ -41,27 +41,35 @@ a {
   }
 }
 
-.flashcardSet {
-  border-width:2px;
-  border-style:solid;
-  border-color:#ededed;
-  border-radius: 20px;
-  height: 60px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 15px;
-}
-
 .flashcardBox {
+  padding-top: 15px;
+  padding-bottom: 15px;
   border-width:2px;
   border-style:solid;
   width: 50vw;
   border-color:#ededed;
   border-radius: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
-button {
+a {
   background-color: #ededed;
+  color: #000000;
+  padding: 20px;
+  border-radius: 20px;
+  border: 0;
+  box-shadow: none;
+  margin: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  &:hover {
+    filter: brightness(80%);
+    cursor: pointer;
+}}
+
+.maxwidth {
+  width: calc(100% - 30px);
 }

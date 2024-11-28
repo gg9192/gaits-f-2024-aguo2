@@ -4,16 +4,10 @@ import FlashcardSetList from "./components/FlashcardSetList";
 export default function Home() {
   return (
     <div className={styles.page}>
-        <div>Select a Flashcard Set</div>
+        <h1>Select a Flashcard Set</h1>
         <FlashcardSetList></FlashcardSetList>
-        <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Deploy now
-          </a>
+        <h1>OR:</h1>
+        <a href='/create'>Create a New Set</a>
     </div>
   );
 }

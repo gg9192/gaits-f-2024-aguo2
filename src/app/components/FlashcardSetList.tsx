@@ -29,7 +29,7 @@ export default async function FlashcardSetList() {
 
     return (<div className="flashcardBox">
         {flashcardsets.map((el) => {return (
-            <div className="flashcardSet" key={el.id}>{el.name}</div>
+            <a className="maxwidth" key={el.id}>{el.name}</a>
         )})}
     </div>)
 
