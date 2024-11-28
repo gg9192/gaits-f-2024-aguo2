@@ -40,3 +40,28 @@ a {
     color-scheme: dark;
   }
 }
+
+.flashcardSet {
+  border-width:2px;
+  border-style:solid;
+  border-color:#ededed;
+  border-radius: 20px;
+  height: 60px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 15px;
+}
+
+.flashcardBox {
+  border-width:2px;
+  border-style:solid;
+  width: 50vw;
+  border-color:#ededed;
+  border-radius: 20px;
+}
+
+button {
+  background-color: #ededed;
+}
