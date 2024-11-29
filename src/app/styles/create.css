@@ -1,0 +1,45 @@
+.fullscreen {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.scrollabletextbox {
+    background-color: #ededed;
+    color: #000000;
+    margin: 20px;
+    margin-bottom: 100px;
+    width: 50vw;
+    height: 20vw;
+}
+
+.file-upload {
+    width: 30vw;
+    height: 20vw;
+    background-color: #ededed;
+    margin: 30px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+        filter: brightness(70%);
+        cursor: pointer;
+    }
+}
+
+.file-upload-icon {
+    width: 60%;
+    height: 60%
+}
+
+.hide {
+    display: none;
+}
+
+.hiiii {
+    margin-bottom: 20px;
+}
