@@ -18,7 +18,7 @@ export default function FlashcardComponent({ flashcard }: { flashcard: Flashcard
                         <h1>{flashcard.question}</h1>
                     </div>
                     <div className="flip-card-back">
-                        <h1>{flashcard.answer}</h1>
+                        <div><h1>{flashcard.answer}  </h1></div>
                     </div>
                 </div>
             </div>
