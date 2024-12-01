@@ -2,7 +2,6 @@ import { flashcardSets } from "@/types/flashcardset"
 import { redirect } from 'next/navigation'
 import getClient from "../util/dbutil"
 
-
 async function getFlashCardSets() {
     const client = getClient()
     try {
@@ -14,6 +13,7 @@ async function getFlashCardSets() {
         return res
     }
     catch (err) { 
+        console.log('error fetching flashcard sets from db', err.text)
         redirect('/500')
     }
     finally {
