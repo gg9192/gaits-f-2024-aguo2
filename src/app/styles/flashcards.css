@@ -36,12 +36,16 @@
     height: 100%;
     -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   /* Style the front side (fallback if image is missing) */
   .flip-card-front {
     background-color: #ededed;
     color: black;
+    padding: 20px;
   }
   
   /* Style the back side */
@@ -49,4 +53,5 @@
     background-color: #ededed;
     color: black;
     transform: rotateY(180deg);
+    padding: 20px;
   }

@@ -15,10 +15,10 @@ export default function FlashcardComponent({ flashcard }: { flashcard: Flashcard
             <div className="flip-card">
                 <div className="flip-card-inner">
                     <div className="flip-card-front">
-                        {flashcard.question}
+                        <h1>{flashcard.question}</h1>
                     </div>
                     <div className="flip-card-back">
-                        {flashcard.answer}
+                        <h1>{flashcard.answer}</h1>
                     </div>
                 </div>
             </div>
