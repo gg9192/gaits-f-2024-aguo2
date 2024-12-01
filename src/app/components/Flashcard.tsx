@@ -10,10 +10,12 @@ export default function FlashcardComponent({ flashcard }: { flashcard: Flashcard
         setIsFlipped((val) => (!val))
     }
 
+    const css = isFlipped? "on-flip-inner" : ""
+
     return (
         <div>
-            <div className="flip-card">
-                <div className="flip-card-inner">
+            <div className="flip-card" onClick={handleClick}>
+                <div className={`flip-card-inner ${css}`}>
                     <div className="flip-card-front">
                         <h1>{flashcard.question}</h1>
                     </div>

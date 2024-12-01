@@ -25,7 +25,7 @@
   }
   
   /* Do an horizontal flip when you move the mouse over the flip box container */
-  .flip-card:hover .flip-card-inner {
+  .on-flip-inner {
     transform: rotateX(180deg);
   }
   
