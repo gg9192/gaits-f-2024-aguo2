@@ -212,7 +212,7 @@ async function seedFakeCards() {
         console.log('cards seeded successfully')
     }
     catch (err) {
-        console.log('there was an error seeding flashcards' + err.text)
+        console.log('there was an error seeding flashcards' + err.message)
     }
     finally {
         client.end()

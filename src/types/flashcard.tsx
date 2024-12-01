@@ -1,7 +1,7 @@
-export interface flashcard {
+export interface Flashcard {
     question: string;
     answer: string;
     id: number;
 }
 
-export type flashcards = flashcard[];
+export type Flashcards = Flashcard[];

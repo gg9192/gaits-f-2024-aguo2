@@ -1,6 +1,6 @@
-export interface flashcardSet {
+export interface FlashcardSet {
     name: string;
     id: number;
 }
 
-export type flashcardSets = flashcardSet[];
+export type FlashcardSets = FlashcardSet[];
