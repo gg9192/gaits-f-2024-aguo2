@@ -10,11 +10,18 @@ export default function FlashcardComponent({ flashcard }: { flashcard: Flashcard
         setIsFlipped((val) => (!val))
     }
 
-    return (<div onClick={handleClick} className="flashcard">
-        {isFlipped ? (<h1>
-            {flashcard.answer}
-        </h1>) : (<h1>
-            {flashcard.question}
-        </h1>)}
-    </div>)
+    return (
+        <div>
+            <div className="flip-card">
+  <div className="flip-card-inner">
+    <div className="flip-card-front">
+    </div>
+    <div className="flip-card-back">
+      <h1>John Doe</h1>
+      <p>Architect & Engineer</p>
+      <p>We love that guy</p>
+    </div>
+  </div>
+</div>
+        </div>)
 }
