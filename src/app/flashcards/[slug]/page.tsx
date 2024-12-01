@@ -2,6 +2,7 @@ import getClient from "@/app/util/dbutil"
 import { redirect } from 'next/navigation'
 import { Flashcards } from "@/types/flashcard";
 import FlashCardContainer from "@/app/components/FlashCardContainer";
+import '../../styles/flashcards.css'
 
 function isIntegerString(value: string): boolean {
   const parsed = parseInt(value, 10);
@@ -56,8 +57,8 @@ export default async function FlashcardPage({
   const cards = await getFlashcardsForSet(flashcardsetid)
   console.log(cards)
   return (
-    <div>
-      <FlashCardContainer></FlashCardContainer>
+    <div className="fullscreen">
+      <FlashCardContainer flashcards={cards} ></FlashCardContainer>
     </div>
   )
 

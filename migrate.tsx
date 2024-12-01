@@ -8,7 +8,6 @@ function dateToTimeStamp(d) {
 }
 
 async function migrateDB() {
-    console.log('amdjw')
     let client = new Client({
         user: process.env.DB_USER,
         password: process.env.DB_PASSWORD,
@@ -206,7 +205,7 @@ async function seedFakeCards() {
         for (const pair of cards) {
             const q = pair.question
             const ans = pair.answer
-            const query = `insert into FlashCards (Question, Answer,FlashcardSetFK) values ('${q}','${ans}',1)`
+            const query = `insert into FlashCards (Question, Answer,FlashcardSetFK) values ('${q}','${ans}',10)`
             await client.query(query);
         }
         console.log('cards seeded successfully')
