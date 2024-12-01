@@ -1,26 +1,24 @@
 import { flashcardSets } from "@/types/flashcardset"
-import pg from 'pg'
-
+import { redirect } from 'next/navigation'
+import getClient from "../util/dbutil"
 
 
 async function getFlashCardSets() {
-    const portAsString:string = process.env.DB_PORT == undefined ? '' : process.env.DB_PORT
-
-    const { Client } = pg
-    const client = new Client({
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        host: process.env.DB_HOST,
-        port: parseInt(portAsString),
-        database: 'GAITS-project' // Connect to the new database
-    })
-    await client.connect()
-    const pgres = (await client.query("select SetName, pk from FlashcardSets order by CreatedAt ASC")).rows
-    console.log(pgres)
-    const res:flashcardSets = pgres.map((pgrow) => {
-        return {name: pgrow['setname'], id:pgrow['pk']}
-    })
-    return res
+    const client = getClient()
+    try {
+        await client.connect()
+        const pgres = (await client.query("select SetName, pk from FlashcardSets order by CreatedAt DESC")).rows
+        const res: flashcardSets = pgres.map((pgrow) => {
+            return { name: pgrow['setname'], id: pgrow['pk'] }
+        })
+        return res
+    }
+    catch (err) { 
+        redirect('/500')
+    }
+    finally {
+        client.end()
+     }
 }
 
 export default async function FlashcardSetList() {
@@ -28,9 +26,11 @@ export default async function FlashcardSetList() {
     const flashcardsets = await getFlashCardSets()
 
     return (<div className="flashcardBox">
-        {flashcardsets.map((el) => {return (
-            <a className="maxwidth" key={el.id}>{el.name}</a>
-        )})}
+        {flashcardsets.map((el) => {
+            return (
+                <a className="maxwidth" key={el.id}>{el.name}</a>
+            )
+        })}
     </div>)
 
 }

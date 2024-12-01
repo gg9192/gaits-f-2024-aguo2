@@ -85,7 +85,6 @@ async function seedFakeSets() {
     await client.connect()
     try {
         const subjects = [
-            "Computer Science",
             "Mathematics",
             "Physics",
             "Chemistry",
@@ -94,7 +93,8 @@ async function seedFakeSets() {
             "Geography",
             "Literature",
             "Philosophy",
-            "Economics"
+            "Economics",
+            "Computer Science"
           ];
         const d = new Date();
         for (const subject of subjects) {
@@ -208,8 +208,9 @@ async function seedFakeCards() {
             const ans = pair.answer
             const query = `insert into FlashCards (Question, Answer,FlashcardSetFK) values ('${q}','${ans}',1)`
             await client.query(query);
-            console.log('cards seeded successfully')
-        }}
+        }
+        console.log('cards seeded successfully')
+    }
     catch (err) {
         console.log('there was an error seeding flashcards' + err.text)
     }
