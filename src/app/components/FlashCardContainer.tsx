@@ -16,11 +16,7 @@ export default function FlashCardContainer({ flashcards }: { flashcards: Flashca
     }
     useEffect(() => {
         const debouncedUpdateDimensions = debounce(updateDimensions, 200); // 200ms delay
-
-        // Add the resize event listener with the debounced function
         window.addEventListener("resize", debouncedUpdateDimensions);
-
-        // Cleanup on component unmount
         return () => {
             window.removeEventListener("resize", debouncedUpdateDimensions);
         };
