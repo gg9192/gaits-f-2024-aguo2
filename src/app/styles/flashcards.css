@@ -12,12 +12,22 @@
   width: 40vw;
   height: 50vh;
   perspective: 1000px;
+  margin-right: 15vw;
   /* Remove this if you don't want the 3D effect */
 }
 
 .outer-container {
   width: 40vw;
   height: 60vh;
+}
+
+.outer-outer {
+  width: 60vw;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
 .cards-controls {
@@ -48,6 +58,13 @@
 .svg-icon {
   width: 80%;
   height: 80%;
+}
+
+.cards-container {
+  transition: 2000ms;
+  display: flex;
+  align-items : center;
+  /* overflow: hidden; */
 }
 
 /* This container is needed to position the front and back side */

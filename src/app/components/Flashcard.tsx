@@ -1,5 +1,5 @@
 "use client"
-import { Flashcard } from "@/types/flashcard";
+import { Flashcard } from "@/types/Flashcard";
 import { useState } from "react";
 
 export default function FlashcardComponent({ flashcard }: { flashcard: Flashcard }) {
@@ -13,7 +13,7 @@ export default function FlashcardComponent({ flashcard }: { flashcard: Flashcard
     const css = isFlipped? "on-flip-inner" : ""
 
     return (
-        <div>
+        <div key={flashcard.id}>
             <div className="flip-card" onClick={handleClick}>
                 <div className={`flip-card-inner ${css}`}>
                     <div className="flip-card-front">
