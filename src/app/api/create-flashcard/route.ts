@@ -11,10 +11,15 @@ async function insert(question: string, answer: string, setID: number) {
         setID = parseInt(setID)
         console.log(setID)
         await client.query("insert into FlashCards (Question, Answer,FlashcardSetFK) values ($1,$2,$3)", [question, answer, setID])
+        return new Response('ok', {
+            status: 200
+        })
     }
     catch (err) {
         console.log(`failed to insert flashcard into set ${setID}`, err.message)
-        redirect('/500')
+        return new Response(`failed to insert flashcard into set ${setID}`, {
+            status: 500
+        })
     }
     finally {
         client.end()
@@ -34,7 +39,6 @@ export async function POST(request: Request) {
     const setID = formData.get('setID')
     const question = formData.get('question')
     const answer = formData.get('answer')
-    console.log(nullOrEmpty(setID) || nullOrEmpty(question) || nullOrEmpty(answer))
     if (nullOrEmpty(setID) || nullOrEmpty(question) || nullOrEmpty(answer)) {
         return new Response("please fill out all form fields", {
             status: 400
@@ -46,11 +50,8 @@ export async function POST(request: Request) {
             status: 404
         })
     }
-        
 
-    await insert(question, answer, setID)
-    return new Response(`ok`, {
-        status: 200
-    })
+    return await insert(question, answer, setID)
+
 
 }

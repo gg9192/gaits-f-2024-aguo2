@@ -1,4 +1,5 @@
 import getClient from "@/app/util/dbutil"
+import { connect } from "http2";
 import { redirect } from 'next/navigation'
 
 function isIntegerString(value: string): boolean {
@@ -47,6 +48,28 @@ export async function setExistsBoolean(flashcardsetid: string) {
   }
   catch (err) {
     console.log(`error validating that set ${flashcardsetid}`, err.message)
+    return false
+  }
+  finally {
+    client.end()
+  }
+}
+
+export async function cardExistsBoolean(cardID: string):boolean {
+  if (!isIntegerString(cardID)) {
+    return false
+  }
+  const cardIDInt = parseInt(cardID)
+
+  const client = getClient()
+  try {
+    await client.connect()
+    const num = (await client.query("select * from FlashCards where PK = $1", [cardIDInt])).rows.length
+    return num !== 0
+
+  }
+  catch (error) {
+    console.log(`error verifying that card ${cardID} exists`)
     return false
   }
   finally {
