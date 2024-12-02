@@ -38,7 +38,7 @@ export default async function FlashcardPage({
   return (
     <div className="fullscreen">
       <FlashCardContainer flashcards={cards} ></FlashCardContainer>
-      <ModalManager></ModalManager>
+      <ModalManager setId={flashcardsetid}></ModalManager>
     </div>
   )
 

@@ -34,6 +34,7 @@ export async function POST(request: Request) {
     const setID = formData.get('setID')
     const question = formData.get('question')
     const answer = formData.get('answer')
+    console.log(nullOrEmpty(setID) || nullOrEmpty(question) || nullOrEmpty(answer))
     if (nullOrEmpty(setID) || nullOrEmpty(question) || nullOrEmpty(answer)) {
         return new Response("please fill out all form fields", {
             status: 400

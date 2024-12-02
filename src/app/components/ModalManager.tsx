@@ -2,14 +2,35 @@
 import '../styles/modal.css'
 import { useState } from 'react'
 
+async function submit(question: string, answer: string, setid: string) {
+    const formData = new FormData();
+    formData.append('question', question);
+    formData.append('answer', answer);
+    formData.append('setID', setid);
+
+    try {
+        const response = await fetch('http://localhost:3000/api/create-flashcard', {
+            method: 'POST'  ,
+            body: formData, 
+        });
+
+        if (!response.ok) {
+            const txt = await response.text()
+            alert(txt);
+            return;
+        }
+
+        window.location.reload();
+    } catch (error) {
+        console.error('Error creating flashcard:', error);
+    }
+}
 
 
-
-export default function ModalManager() {
+export default function ModalManager({setId}: {setId: string}) {
     const [isOpen, setIsOpen] = useState(false)
     const [question, setQuestion] = useState('')
     const [answer, setAnswer] = useState('')
-    console.log(question, answer)
 
     const handleOpen = () => {
         setIsOpen(true)
@@ -41,7 +62,9 @@ export default function ModalManager() {
             <textarea onChange={(e) => setQuestion(e.target.value)}></textarea>
             <h3 className='top-gap'>Answer:</h3>
             <textarea onChange={(e) => setAnswer(e.target.value)}></textarea>
-            <button className='button'>Create!</button>
+            <button className='button' onClick={() => {
+                submit(question, answer, setId)
+            }}>Create!</button>
         </div>
     </>)
 }
