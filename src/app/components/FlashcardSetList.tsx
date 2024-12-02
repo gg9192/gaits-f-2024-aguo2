@@ -1,4 +1,4 @@
-import { FlashcardSets } from '@/types/flashcardset'
+import { FlashcardSets } from '@/types/Flashcardset'
 import { redirect } from 'next/navigation'
 import getClient from "../util/dbutil"
 import Link from 'next/link'
