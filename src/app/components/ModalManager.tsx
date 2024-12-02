@@ -2,8 +2,14 @@
 import '../styles/modal.css'
 import { useState } from 'react'
 
+
+
+
 export default function ModalManager() {
     const [isOpen, setIsOpen] = useState(false)
+    const [question, setQuestion] = useState('')
+    const [answer, setAnswer] = useState('')
+    console.log(question, answer)
 
     const handleOpen = () => {
         setIsOpen(true)
@@ -32,9 +38,9 @@ export default function ModalManager() {
                 <line x1="6" y1="6" x2="18" y2="18" />
             </svg></div>
             <h3 className='top-gap'>Question:</h3>
-            <textarea></textarea>
+            <textarea onChange={(e) => setQuestion(e.target.value)}></textarea>
             <h3 className='top-gap'>Answer:</h3>
-            <textarea></textarea>
+            <textarea onChange={(e) => setAnswer(e.target.value)}></textarea>
             <button className='button'>Create!</button>
         </div>
     </>)

@@ -1,5 +1,25 @@
-import pg from 'pg'
-import setExists from '@/app/util/flashcardvalidator'
+import getClient from '@/app/util/dbutil';
+import { setExistsBoolean } from '@/app/util/flashcardvalidator'
+import { redirect } from 'next/navigation'
+import { nullOrEmpty } from '@/app/util/formutils';
+
+
+async function insert(question: string, answer: string, setID: number) {
+    const client = getClient()
+    try {
+        await client.connect()
+        setID = parseInt(setID)
+        console.log(setID)
+        await client.query("insert into FlashCards (Question, Answer,FlashcardSetFK) values ($1,$2,$3)", [question, answer, setID])
+    }
+    catch (err) {
+        console.log(`failed to insert flashcard into set ${setID}`, err.message)
+        redirect('/500')
+    }
+    finally {
+        client.end()
+    }
+}
 
 export async function POST(request: Request) {
     let formData;
@@ -9,13 +29,27 @@ export async function POST(request: Request) {
     catch {
         return new Response('Please send valid form data', {
             status: 400
-          })
+        })
     }
-    const flashcardset = form.flashcardset
+    const setID = formData.get('setID')
+    const question = formData.get('question')
+    const answer = formData.get('answer')
+    if (nullOrEmpty(setID) || nullOrEmpty(question) || nullOrEmpty(answer)) {
+        return new Response("please fill out all form fields", {
+            status: 400
+        })
+    }
 
+    if (!setExistsBoolean(setID)) {
+        return new Response(`set ${setID} does not exist`, {
+            status: 404
+        })
+    }
+        
 
-    return new Response('ok', {
+    await insert(question, answer, setID)
+    return new Response(`ok`, {
         status: 200
-      })
+    })
 
 }
