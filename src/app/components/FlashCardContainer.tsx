@@ -9,13 +9,10 @@ import { debounce } from "lodash";
 
 export default function FlashCardContainer({ flashcards }: { flashcards: Flashcards }) {
     const [flashCardIndex, setFlashCardIndex] = useState(0)
-
     const [width, setWidth] = useState(window.innerWidth);
-    const [height, setHeight] = useState(window.innerHeight);
-    console.log(width, height)
+
     const updateDimensions = () => {
         setWidth(window.innerWidth);
-        setHeight(window.innerHeight);
     }
     useEffect(() => {
         window.addEventListener("resize", updateDimensions);
@@ -23,7 +20,6 @@ export default function FlashCardContainer({ flashcards }: { flashcards: Flashca
     }, []);
 
     const getOffset = () => {
-        console.log('cacacaacac', flashCardIndex * (0.4 * width) + (0.15 * width) * flashCardIndex)
         return -1 * (flashCardIndex * (0.4 * width) + (0.15 * width) * flashCardIndex)
     }
 
@@ -45,14 +41,20 @@ export default function FlashCardContainer({ flashcards }: { flashcards: Flashca
         })
     }
 
+    const leftButtonDisabled = flashCardIndex === 0
+    const rightButtonDisabled = flashCardIndex === flashcards.length - 1
+    const leftbuttonStyle = leftButtonDisabled ? "button-disabled" : "control-button"
+    const rightButtonStyle = rightButtonDisabled ? "button-disabled" : "control-button"
+
+
     return (<div className="outer-outer"><div className="outer-container">
         <div key={-1} className="cards-container">
             {flashcards.map((flashcard,i) =>
-                <div key={i} style={{ transform: `translate(${getOffset()}px, 0px)` }}><FlashcardComponent flashcard={flashcard}></FlashcardComponent></div>
+                <div key={i} className="cards-wrapper" style={{ transform: `translate(${getOffset()}px, 0px)` }}><FlashcardComponent flashcard={flashcard}></FlashcardComponent></div>
             )}
         </div>
         <div key={-10} className="cards-controls">
-            <button className="control-button" onClick={handleLeftClick}>
+            <button className={leftbuttonStyle} onClick={handleLeftClick}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="10.605" height="15.555" fill="#000000"><path d="M10.605 12.727 5.656 7.776l4.949-4.948L7.777 0 0 7.776l7.777 7.779 2.828-2.828z" /></svg>
             </button> {/* left */}
             <button className="control-button">
@@ -64,7 +66,7 @@ export default function FlashCardContainer({ flashcards }: { flashcards: Flashca
                 <svg fill="#000000" viewBox="0 0 256 256" id="Flat" xmlns="http://www.w3.org/2000/svg" className="svg-icon"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M157.27246,21.21973a11.99809,11.99809,0,0,0-12.63965,1.30761L75.88281,76H32A20.02229,20.02229,0,0,0,12,96v64a20.02229,20.02229,0,0,0,20,20H75.88281l68.75,53.47266A11.99983,11.99983,0,0,0,164,224V32A12.0007,12.0007,0,0,0,157.27246,21.21973ZM140,199.46484l-52.63281-40.9375A12.00231,12.00231,0,0,0,80,156H36V100H80a12.00231,12.00231,0,0,0,7.36719-2.52734L140,56.53516ZM203.98828,104v48a12,12,0,0,1-24,0V104a12,12,0,0,1,24,0Zm36-16v80a12,12,0,0,1-24,0V88a12,12,0,0,1,24,0Z"></path> </g></svg>
             </button> {/* speaker */}
 
-            <button className="control-button" onClick={handleRightClick}>
+            <button className={rightButtonStyle} onClick={handleRightClick}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="10.605" height="15.555" fill="#000000" className="right-button"><path d="M10.605 12.727 5.656 7.776l4.949-4.948L7.777 0 0 7.776l7.777 7.779 2.828-2.828z" /></svg>
             </button> {/* right */}
         </div>

@@ -1,6 +1,6 @@
 import getClient from "@/app/util/dbutil"
 import { redirect } from 'next/navigation'
-import { Flashcards } from "@/types/flashcard";
+import { Flashcards } from "@/types/Flashcard";
 import FlashCardContainer from "@/app/components/FlashCardContainer";
 import '../../styles/flashcards.css'
 
