@@ -16,5 +16,5 @@ async function getFlashcardSets(notes: string):Promise<object> {
     model: 'gpt-4o-mini',
   });
   const restxt = completions.choices[0].message
-
+  return JSON.parse(restxt)
 }
