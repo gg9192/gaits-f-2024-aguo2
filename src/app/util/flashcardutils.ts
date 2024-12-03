@@ -171,6 +171,7 @@ export async function deleteSet(setID: string) {
     for (const card of pgres) {
       await deleteCard(card.pk)
     }
+    await client.query("DELETE FROM FlashcardSets WHERE pk = $1 ", [parseInt(setID)])
     return new Response("set was deleted", {
       status: 200
   })

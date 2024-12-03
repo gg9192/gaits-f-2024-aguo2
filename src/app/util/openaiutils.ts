@@ -36,12 +36,6 @@ export async function evalFRQ(question: string, answer: string, correct: string)
   answer: blue
   intended correct answer: blue
   output: correct!
-
-  example 2:
-  question: What color is the sky 
-  answer: blue
-  intended correct answer: pink
-  output: incorrect!
   `
 
   const usr = `question: ${question}

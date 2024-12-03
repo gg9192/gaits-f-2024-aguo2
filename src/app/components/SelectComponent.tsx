@@ -1,9 +1,9 @@
 "use client"
 import Link from 'next/link'
-import { redirect } from 'next/navigation'
+import { useRouter } from "next/navigation";
 import '../styles/select.css'
 
-async function deleteSet(setID: string) {
+async function deleteSet(setID: string, router) {
     const formData = new FormData();
       formData.append('setID', setID)
       try {
@@ -17,14 +17,17 @@ async function deleteSet(setID: string) {
               alert(txt);
               return;
           }
-          redirect('/')
+
+          router.replace("/")
   
       } catch (error) {
-          console.error('Error creating flashcard:', error);
+          console.error('Error deleting set flashcard:', error);
       }}
   
       
 export default function SelectComponent({id}: {id: number}) {
+  const router = useRouter()
+
     return (<div className='center'>
         <div>
           <Link href={`/flashcards/${id}`}>Flashcards</Link>
@@ -35,7 +38,7 @@ export default function SelectComponent({id}: {id: number}) {
         </div>
         <div className='divider'></div>
         <div>
-          <button onClick={() => {deleteSet(id.toString())}}>Delete This Set</button>
+          <button onClick={() => {deleteSet(id.toString(),router)}}>Delete This Set</button>
         </div>
       </div>
   )
