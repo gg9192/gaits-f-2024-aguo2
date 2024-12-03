@@ -1,4 +1,5 @@
 import { nullOrEmpty } from '@/app/util/formutils';
+import { evalFRQ } from '@/app/util/openaiutils';
 
 export async function POST(request: Request) {
     let formData;
@@ -25,9 +26,11 @@ export async function POST(request: Request) {
             status: 400
         })
     }
+    console.log('calling to openai')
+    const response = await evalFRQ(question,usrAnswer,realAnswer)
 
 
-    return new Response(`correct!`, {
+    return new Response(`${response}`, {
         status: 200
     })
 }

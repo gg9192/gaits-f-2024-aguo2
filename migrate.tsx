@@ -216,7 +216,6 @@ async function seedFakeCards() {
     finally {
         client.end()
     }    
-    
 }
 
 

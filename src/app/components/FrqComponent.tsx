@@ -13,6 +13,7 @@ async function submit(question:string, usrAnswer:string, realAnswer:string) {
       body: formData});
     const t = await response.text()
     alert(t)
+    window.location.reload()
   }
 
 export default function FrqComponent({flashcard}: {flashcard: Flashcard}) {

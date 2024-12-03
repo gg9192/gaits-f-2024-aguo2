@@ -22,3 +22,35 @@ export async function getFlashcardSets(notes: string): Promise<object> {
   console.log(stripped, 'stripped')
   return JSON.parse(stripped)
 }
+
+
+export async function evalFRQ(question: string, answer: string, correct: string): Promise<String> {
+  const sysPrompt = `You are a grader as a university, you are given a question, an answer, and the intended correct answer
+  your job is to evaluate the answer based on the correct answer and output either the string "correct!" or the string "incorrect!".
+  Do not output any other words, or more than one word. Evaluate the response based on your knowledge of the subject and the intended 
+  correct answer. Use your best judgement.
+  example 1:
+  question: What color is the sky 
+  answer: blue
+  intended correct answer: blue
+  output: correct!
+
+  example 2:
+  question: What color is the sky 
+  answer: blue
+  intended correct answer: pink
+  output: incorrect!
+  `
+
+  const usr = `question: ${question}
+  answer: ${answer}
+  intended correct answer: ${correct}
+  `
+
+  const completions = await client.chat.completions.create({
+    messages: [{ role: 'system', content: sysPrompt }, { role: 'user', content: usr }],
+    model: 'gpt-4o-mini',
+  });
+  const restxt = completions.choices[0].message.content
+  return restxt
+}
