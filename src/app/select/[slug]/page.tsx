@@ -10,12 +10,14 @@ export default async function Page({
   const flashcardsetid = (await params).slug
   await setExists(flashcardsetid)
   return (<>
-    <div>
-      <Link href={`/flashcards/${flashcardsetid}`}>Flashcards</Link>
-    </div>
-    <div className='divider'></div>
-    <div>
-      <a>Free response</a>
+    <div className='center'>
+      <div>
+        <Link href={`/flashcards/${flashcardsetid}`}>Flashcards</Link>
+      </div>
+      <div className='divider'></div>
+      <div>
+        <a>Free response</a>
+      </div>
     </div>
 
   </>)

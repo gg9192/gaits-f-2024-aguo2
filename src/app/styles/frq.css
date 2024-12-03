@@ -1,0 +1,40 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100vh;
+}
+
+textarea {
+    resize: none;
+    width: 60vw;
+    height: 30vh;
+    background-color: #ededed;
+    color:black;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+button {
+    background-color: #ededed;
+    color: #000000;
+    padding: 10px;
+    border-radius: 20px;
+    border: 0;
+    box-shadow: none;
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    &:hover {
+      filter: brightness(80%);
+      cursor: pointer;
+  }}
