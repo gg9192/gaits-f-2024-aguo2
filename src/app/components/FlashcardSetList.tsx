@@ -34,7 +34,7 @@ export default async function FlashcardSetList() {
                 (
                     flashcardsets.map((el) => {
                         return (
-                            <Link className='maxwidth' href={`/flashcards/${el.id}`} key={el.id}>{el.name}</Link>
+                            <Link className='maxwidth' href={`/select/${el.id}`} key={el.id}>{el.name}</Link>
                         )
                     })
                 )

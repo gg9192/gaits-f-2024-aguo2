@@ -1,0 +1,15 @@
+.fullscreen {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    flex-direction: row;
+  }
+
+.divider {
+    height: 80%;
+    width: 5px;
+    background-color: #ededed;
+    border-radius: 5px;
+}

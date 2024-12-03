@@ -25,9 +25,7 @@ async function deleteCard(id: number) {
 
     } catch (error) {
         console.error('Error creating flashcard:', error);
-    }
-
-}
+    }}
 
 export default function FlashCardContainer({ flashcards }: { flashcards: Flashcards }) {
     const [flashCardIndex, setFlashCardIndex] = useState(0)
