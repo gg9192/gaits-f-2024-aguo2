@@ -1,6 +1,5 @@
 import getClient from '@/app/util/dbutil';
 import { setExistsBoolean } from '@/app/util/flashcardvalidator'
-import { redirect } from 'next/navigation'
 import { nullOrEmpty } from '@/app/util/formutils';
 
 

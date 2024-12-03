@@ -1,0 +1,69 @@
+Overview of Sorting Algorithms
+Sorting rearranges elements in a list in a specific order, such as ascending or descending.
+It is a core problem in computer science with many different approaches.
+Common Sorting Algorithms
+Bubble Sort
+
+Compares adjacent elements and swaps them if they are out of order.
+Repeats this process until no swaps are needed.
+Best case: O(n) when the list is already sorted.
+Worst and average case: O(n^2).
+Space complexity: O(1).
+Pros: Simple and easy to implement.
+Cons: Inefficient for large datasets.
+Selection Sort
+
+Finds the smallest element and places it at the start of the list.
+Repeats this process for the remaining unsorted elements.
+Time complexity: O(n^2) for all cases.
+Space complexity: O(1).
+Pros: Fewer swaps than bubble sort.
+Cons: Slow for large datasets.
+Merge Sort
+
+Divides the list into smaller sublists until each sublist has one element.
+Merges the sublists in sorted order.
+Time complexity: O(n log n) for all cases.
+Space complexity: O(n).
+Pros: Efficient and stable.
+Cons: Uses more memory.
+Quick Sort
+
+Picks a pivot element.
+Partitions the list into elements smaller than the pivot and larger than the pivot.
+Recursively applies the process to partitions.
+Best and average case: O(n log n).
+Worst case: O(n^2) if pivot selection is poor.
+Space complexity: O(log n).
+Pros: Fast for large datasets.
+Cons: Unstable sorting.
+Stability of Sorting Algorithms
+A stable algorithm maintains the relative order of equal elements.
+Stable: Bubble sort, merge sort.
+Unstable: Quick sort, selection sort.
+When to Use Each Algorithm
+Bubble sort: Good for small datasets and teaching purposes.
+Selection sort: Use when memory writes are expensive.
+Merge sort: Good for large datasets and when stability is important.
+Quick sort: Good for large datasets when speed is more important than stability.
+
+Example Problem
+Problem: Sort [8, 4, 6, 2] using merge sort.
+Solution:
+
+Divide: [8, 4] and [6, 2].
+
+Further divide: [8], [4], [6], [2].
+
+Merge sorted halves: [4, 8] and [2, 6].
+
+Merge the final lists: [2, 4, 6, 8].
+
+Homework
+
+Implement bubble sort and merge sort in Python.
+Test them on arrays of size 10, 100, and 1000 and analyze their performance.
+Key Takeaways
+
+Sorting algorithms differ in performance and use cases.
+Consider time complexity, space complexity, and stability when choosing an algorithm.
