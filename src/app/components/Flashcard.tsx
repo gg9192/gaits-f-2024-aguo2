@@ -2,11 +2,11 @@
 import { Flashcard } from "@/types/Flashcard";
 import { useState } from "react";
 
-export default function FlashcardComponent({ flashcard }: { flashcard: Flashcard }) {
+export default function FlashcardComponent({ flashcard, flipped }: { flashcard: Flashcard, flipped: Function }) {
     const [isFlipped, setIsFlipped] = useState(false)
 
     const handleClick = () => {
-        console.log('clclclcl')
+        flipped((val:boolean) => (!val))
         setIsFlipped((val) => (!val))
     }
 
