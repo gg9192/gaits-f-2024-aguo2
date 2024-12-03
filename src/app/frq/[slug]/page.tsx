@@ -1,4 +1,4 @@
-import { setExists } from '../../util/flashcardvalidator'
+import { setExists } from '../../util/flashcardutils'
 import getClient from '@/app/util/dbutil'
 import { Flashcard } from '@/types/Flashcard'
 import FrqComponent from '@/app/components/FrqComponent'

@@ -1,29 +1,6 @@
-import getClient from '@/app/util/dbutil';
-import { cardExistsBoolean } from '@/app/util/flashcardvalidator';
+import { cardExistsBoolean } from '@/app/util/flashcardutils';
 import { nullOrEmpty } from '@/app/util/formutils';
-
-async function deleteCard(id) {
-    const client = getClient()
-    id = parseInt(id)
-    try {
-        await client.connect()
-        await client.query('DELETE FROM FlashCards WHERE pk = $1', [id])
-        return new Response(`ok`, {
-            status: 200
-        })
-    }
-    catch (err) {
-        console.log(`error deleting flashcard ${id}`, err.message)
-        return new Response(`error deleting flashcard ${id}`, {
-            status: 500
-        })
-    }
-    finally {
-        client.end()
-    }
-
-}
-
+import { deleteCard } from '@/app/util/flashcardutils';
 
 export async function POST(request: Request) {
     let formData;

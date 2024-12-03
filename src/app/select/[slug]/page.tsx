@@ -1,5 +1,5 @@
 import '../../styles/select.css'
-import { setExists } from '../../util/flashcardvalidator'
+import { setExists } from '../../util/flashcardutils'
 import Link from 'next/link'
 
 export default async function Page({

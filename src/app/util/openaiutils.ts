@@ -1,4 +1,7 @@
 import OpenAI from 'openai';
+import getClient from './dbutil';
+import * as fs from 'node:fs/promises';
+
 
 const client = new OpenAI({});
 export async function getFlashcardSets(notes: string): Promise<object> {
@@ -54,3 +57,5 @@ export async function evalFRQ(question: string, answer: string, correct: string)
   const restxt = completions.choices[0].message.content
   return restxt
 }
+
+export 

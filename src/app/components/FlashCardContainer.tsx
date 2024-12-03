@@ -29,7 +29,7 @@ async function deleteCard(id: number) {
 
 export default function FlashCardContainer({ flashcards }: { flashcards: Flashcards }) {
     const [flashCardIndex, setFlashCardIndex] = useState(0)
-    const [width, setWidth] = useState(window.innerWidth);
+    const [width, setWidth] = useState(window.innerWidth); //this errors in console but works on the UI
 
     const getFlashcardID = () => (flashcards[flashCardIndex].id)
 

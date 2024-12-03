@@ -1,7 +1,7 @@
 import getClient from "@/app/util/dbutil"
 import { Flashcards } from "@/types/Flashcard";
 import FlashCardContainer from "@/app/components/FlashCardContainer";
-import { setExists } from "../../util/flashcardvalidator"
+import { setExists } from "../../util/flashcardutils"
 import ModalManager from "@/app/components/ModalManager";
 import { redirect } from 'next/navigation'
 import '../../styles/flashcards.css'
