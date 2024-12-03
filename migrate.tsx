@@ -221,8 +221,8 @@ async function seedFakeCards() {
 
 async function setUpDB() {
     await migrateDB();
-    // await seedFakeSets()
-    // await seedFakeCards()
+    await seedFakeSets()
+    await seedFakeCards()
 }
 
 setUpDB()

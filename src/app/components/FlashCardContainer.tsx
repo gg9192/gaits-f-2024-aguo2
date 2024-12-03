@@ -100,6 +100,9 @@ export default function FlashCardContainer({ flashcards}: { flashcards: Flashcar
     const leftbuttonStyle = leftButtonDisabled ? "button-disabled" : "control-button"
     const rightButtonStyle = rightButtonDisabled ? "button-disabled" : "control-button"
 
+    if (flashcards.length === 0) {
+        return <h1>You Have No Flashcards In This Set</h1>
+    }
 
     return (<div className="outer-outer"><div className="outer-container">
         <div key={-1} className="cards-container">

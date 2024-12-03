@@ -87,6 +87,7 @@ export async function deleteCard(id:String) {
   try {
       await client.connect()
       const filenames = (await client.query('DELETE FROM FlashCards WHERE pk = $1 RETURNING QuestionTTS, AnswerTTS', [id1])).rows[0]
+      console.log(filenames)
       const qfp = filenames.questiontts
       const afp = filenames.answertts
       const rootDir = process.cwd();
@@ -159,4 +160,29 @@ export async function getBytes(cardID:string, isQuestion: string):Promise<Blob |
   } 
   const b  = await getFileBuffer(found)
   return {buff: b, size: 0}; //size was undeeded OOPS
+}
+
+
+export async function deleteSet(setID: string) {
+  const client = getClient()
+  try {
+    await client.connect()
+    const pgres = (await client.query("select pk from flashcards where FlashcardSetFK = $1", [parseInt(setID)])).rows
+    for (const card of pgres) {
+      await deleteCard(card.pk)
+    }
+    return new Response("set was deleted", {
+      status: 200
+  })
+  }
+  catch (err) {
+    console.log(`exception while deleting set ${setID}`, err.message)
+    return new Response("server error", {
+      status: 500
+  })
+  }
+  finally {
+    client.end()
+  }
+
 }

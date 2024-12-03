@@ -22,3 +22,20 @@ body {
     background-color: #ededed;
     border-radius: 5px;
 }
+
+button {
+    background-color: #ededed;
+    color: #000000;
+    padding: 20px;
+    border-radius: 20px;
+    border: 0;
+    box-shadow: none;
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    &:hover {
+      filter: brightness(80%);
+      cursor: pointer;
+  }}
