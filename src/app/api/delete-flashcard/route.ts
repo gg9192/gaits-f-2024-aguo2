@@ -20,7 +20,7 @@ export async function POST(request: Request) {
         })
     }
 
-    if (!cardExistsBoolean(cardId)) {
+    if (!(await cardExistsBoolean(cardId))) {
         return new Response(`card ${cardId} does not exist`, {
             status: 404
         })

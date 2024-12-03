@@ -1,6 +1,5 @@
 import OpenAI from 'openai';
-import getClient from './dbutil';
-import * as fs from 'node:fs/promises';
+
 
 
 const client = new OpenAI({});
@@ -58,4 +57,12 @@ export async function evalFRQ(question: string, answer: string, correct: string)
   return restxt
 }
 
-export 
+export async function getMP3Bytes(str: string):Promise<Buffer | null> {
+  const client = new OpenAI()
+  const mp3 = await client.audio.speech.create({
+    model: "tts-1",
+    voice: "alloy",
+    input: str,
+  });
+  return Buffer.from(await mp3.arrayBuffer());
+}

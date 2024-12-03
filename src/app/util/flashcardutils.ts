@@ -1,6 +1,9 @@
 import getClient from "@/app/util/dbutil"
 import { redirect } from 'next/navigation'
 import * as fs from 'node:fs/promises';
+import { Blob } from "@/types/Blob";
+import { getMP3Bytes } from "./openaiutils";
+import { saveBufferAsFile,getFileBuffer } from "./fsutils";
 
 function isIntegerString(value: string): boolean {
   const parsed = parseInt(value, 10);
@@ -55,7 +58,8 @@ export async function setExistsBoolean(flashcardsetid: string) {
   }
 }
 
-export async function cardExistsBoolean(cardID: string):boolean {
+export async function cardExistsBoolean(cardID: string):Promise<boolean> {
+
   if (!isIntegerString(cardID)) {
     return false
   }
@@ -107,4 +111,52 @@ export async function deleteCard(id:String) {
   finally {
       client.end()
   }
+}
+
+export async function getBytes(cardID:string, isQuestion: string):Promise<Blob | null> {
+  const dbclient = getClient()
+  const questionBool = isQuestion === "true" ? true : false
+  let txt, found;
+  try {
+    await dbclient.connect()  
+    const columnName = questionBool ? "Question" : "Answer"
+    const ttspath = questionBool ? "QuestionTTS" : "AnswerTTS"
+    console.log(cardID)
+    const pgres = (await dbclient.query(`select ${columnName},${ttspath} from FlashCards where PK = $1`, [parseInt(cardID)])).rows[0]
+    txt = questionBool ? pgres.question : pgres.answer
+    found = questionBool ? pgres.questiontts : pgres.answertts
+  }
+  catch (err) {
+    console.log('problem reading the flashcard from database', err.message)
+  }
+  finally {
+    dbclient.end()
+  }
+  if (found === null) {
+    const b = await getMP3Bytes(txt)
+    if (b === null) {
+      return null
+    }
+    const buff = Buffer.from(b)
+    let filepath
+    try {
+      filepath = await saveBufferAsFile(buff)
+    } catch (error) {
+      console.log('error saving file', error.message)
+      return null;
+    }
+    const dbclient = getClient()
+      try {
+        await dbclient.connect()  
+        const ttspath = questionBool ? "QuestionTTS" : "AnswerTTS"
+        await dbclient.query(`UPDATE FlashCards SET ${ttspath} = '${filepath}' WHERE PK = $1`, [parseInt(cardID)])
+      }
+    catch (err) {
+      console.log('error saving filepath to db', err.message)
+    }
+
+    return {buff: buff, size: buff.byteLength};
+  } 
+  const b  = await getFileBuffer(found)
+  return {buff: b, size: 0}; //size was undeeded OOPS
 }

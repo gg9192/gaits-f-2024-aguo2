@@ -8,7 +8,6 @@ async function insert(question: string, answer: string, setID: number) {
     try {
         await client.connect()
         setID = parseInt(setID)
-        console.log(setID)
         await client.query("insert into FlashCards (Question, Answer,FlashcardSetFK) values ($1,$2,$3)", [question, answer, setID])
         return new Response('ok', {
             status: 200

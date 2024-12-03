@@ -1,8 +1,4 @@
-Put this in your .env file at the root of your repo
+Create ENV file similar to ex.env
 
 
-OPENAI_API_KEY = "YOUR OPENAI API KEY HERE"
-DB_USER = "YOUR DATABASE USERNAME HERE"
-DB_PASSWORD = "YOUR DATABASE USERNAME HERE"
-DB_HOST = "YOUR DATABASE HOST HERE"
-DB_PORT = "YOUR DATABASE PORT HERE"
+make a directory called storage in the root.
