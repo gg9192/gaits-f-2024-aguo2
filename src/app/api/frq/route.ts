@@ -1,4 +1,3 @@
-import { cardExistsBoolean } from '@/app/util/flashcardvalidator';
 import { nullOrEmpty } from '@/app/util/formutils';
 
 export async function POST(request: Request) {
