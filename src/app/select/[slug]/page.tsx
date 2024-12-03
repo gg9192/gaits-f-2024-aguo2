@@ -9,7 +9,7 @@ export default async function Page({
 }) {
   const flashcardsetid = (await params).slug
   await setExists(flashcardsetid)
-  return (<div className='fullscreen'>
+  return (<>
     <div>
       <Link href={`/flashcards/${flashcardsetid}`}>Flashcards</Link>
     </div>
@@ -18,5 +18,5 @@ export default async function Page({
       <a>Free response</a>
     </div>
 
-  </div>)
+  </>)
 }

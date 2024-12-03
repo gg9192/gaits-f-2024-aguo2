@@ -34,12 +34,10 @@ export default async function FlashcardPage({
   const flashcardsetid = (await params).slug
   await setExists(flashcardsetid)
   const cards = await getFlashcardsForSet(flashcardsetid)
-  console.log(cards)
-  return (
-    <div className="fullscreen">
-      <FlashCardContainer flashcards={cards} ></FlashCardContainer>
-      <ModalManager setId={flashcardsetid}></ModalManager>
-    </div>
+  return (<>
+    <FlashCardContainer flashcards={cards} ></FlashCardContainer>
+    <ModalManager setId={flashcardsetid}></ModalManager>
+  </>
   )
 
 }

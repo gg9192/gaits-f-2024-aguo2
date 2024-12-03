@@ -1,6 +1,5 @@
-.fullscreen {
+body {
     width: 100vw;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -12,9 +11,10 @@
     background-color: #ededed;
     color: #000000;
     margin: 20px;
-    margin-bottom: 100px;
+    margin-bottom: 40px;
     width: 50vw;
-    height: 20vw;
+    height: 50vh;
+    resize: none;
 }
 
 .file-upload {
@@ -40,6 +40,24 @@
 .hide {
     display: none;
 }
+
+button {
+    background-color: #ededed;
+    color: #000000;
+    padding: 10px;
+    border-radius: 20px;
+    border: 0;
+    box-shadow: none;
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    &:hover {
+      filter: brightness(80%);
+      cursor: pointer;
+  }}
+  
 
 .hiiii {
     margin-bottom: 20px;
