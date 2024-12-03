@@ -62,3 +62,11 @@ button {
 .hiiii {
     margin-bottom: 20px;
 }
+input {
+    font-size:24px;
+    margin: 20px;
+    width: 400px;
+    height: 40px;
+    background-color: #ededed;
+    color:black;
+}

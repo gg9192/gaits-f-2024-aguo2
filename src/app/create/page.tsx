@@ -1,13 +1,16 @@
+"use client"
 import '../styles/create.css'
 import FileUpload from '../components/FileUploader'
+import { useState } from 'react'
 
 export default function Page() {
+    const [name, setName] = useState()
     
     return (<>
-
-        <h1>Upload Your PDF</h1>
-        <FileUpload></FileUpload>
-        <h1>OR</h1>
+        <h1>Name this set</h1>
+        <input
+            onChange={(e) => setName(e.target.value)}
+        ></input>
         <h1>Paste Your Notes Here</h1>
         <textarea className="scrollabletextbox">
         </textarea>
