@@ -16,7 +16,7 @@ export default async function Page({
       </div>
       <div className='divider'></div>
       <div>
-        <a>Free response</a>
+        <Link href={`/frq/${flashcardsetid}`}>Free Response</Link>
       </div>
     </div>
 
